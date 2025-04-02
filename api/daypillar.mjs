@@ -1,4 +1,4 @@
-import { BaziCalculator } from 'bazica';
+import { BaziCalculator } from 'https://cdn.jsdelivr.net/gh/tommitoan/bazica@latest/dist/index.js';
 
 export default function handler(req, res) {
   const { date } = req.query;
@@ -11,12 +11,12 @@ export default function handler(req, res) {
     const fullDate = new Date(`${date}T00:00:00`);
     const bazi = BaziCalculator.calculate(fullDate, 0);
 
-    res.status(200).json({
+    return res.status(200).json({
       pillar: `${bazi.day.heavenlyStem}${bazi.day.earthlyBranch}`,
       heavenlyStem: bazi.day.heavenlyStem,
       earthlyBranch: bazi.day.earthlyBranch
     });
-  } catch (e) {
-    res.status(500).json({ error: 'Invalid date format or internal error' });
+  } catch (err) {
+    return res.status(500).json({ error: 'Calculation error', details: err.message });
   }
 }
