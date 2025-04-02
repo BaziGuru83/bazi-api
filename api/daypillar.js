@@ -1,6 +1,4 @@
-import { BaziCalculator } from 'https://cdn.jsdelivr.net/gh/tommitoan/bazica@latest/dist/index.js';
-
-export default function handler(req, res) {
+export default async function handler(req, res) {
   const { date } = req.query;
 
   if (!date) {
@@ -8,6 +6,8 @@ export default function handler(req, res) {
   }
 
   try {
+    const { BaziCalculator } = await import('https://cdn.jsdelivr.net/gh/tommitoan/bazica@latest/dist/index.js');
+
     const fullDate = new Date(`${date}T00:00:00`);
     const bazi = BaziCalculator.calculate(fullDate, 0);
 
