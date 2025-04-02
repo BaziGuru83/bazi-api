@@ -3,6 +3,6 @@
   "version": "1.0.0",
   "type": "module",
   "dependencies": {
-    "bazica": "^1.0.2"
+    "bazica": "git+https://github.com/tommitoan/bazica.git"
   }
 }
